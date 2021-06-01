@@ -1,0 +1,14 @@
+FROM node:alpine
+
+WORKDIR /usr/src/app
+
+COPY package.json ./
+
+RUN npm install
+
+COPY ./ ./
+
+## Hot deploy위한 옵션 (maxos는 default true, 나머지는 false)
+ENV CHOKIDAR_USEPOLLING=true
+
+CMD ["npm", "run", "start"]
